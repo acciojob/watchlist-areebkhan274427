@@ -43,11 +43,11 @@ public class MovieRepository {
 
     public Movie getMovieFromDb(String name){
         //System.out.println(movieDb.size());
-        return movieDb.getOrDefault(name, null);
+        return movieDb.get(name);
     }
 
     public Director getDirectorFromDb(String name){
-        return directorDb.getOrDefault(name,null);
+        return directorDb.get(name);
     }
 
     public List<String> getMoviesByDirectorNameFromDb(String name){
@@ -74,9 +74,7 @@ public class MovieRepository {
         for(String s:movieDirectorPair.keySet()) {
             if (s.equals(name)) {
                 for (String n : movieDirectorPair.get(s)) {
-                    if (movieDb.containsKey(n)) {
-                        movieDb.remove(n);
-                    }
+                    movieDb.remove(n);
 
                 }
             }
