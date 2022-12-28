@@ -81,9 +81,10 @@ public class MovieRepository {
             if (s.equals(name)) {
 
                 List<String> list=movieDirectorPair.get(s);
-                for(String m:list)
-                {
-                    movieDb.remove(m);
+                if(list!=null) {
+                    for (String m : list) {
+                        movieDb.remove(m);
+                    }
                 }
 
                 directorDb.remove(name);
@@ -110,9 +111,11 @@ public class MovieRepository {
 
 
                 List<String> list=movieDirectorPair.get(s);
-                for(String m:list)
-                {
-                    movieDb.remove(m);
+
+                if(list!=null) {
+                    for (String m : list) {
+                        movieDb.remove(m);
+                    }
                 }
 
 
