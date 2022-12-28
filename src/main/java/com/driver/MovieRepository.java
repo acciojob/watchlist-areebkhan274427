@@ -77,20 +77,36 @@ public class MovieRepository {
 //                movieDirectorPair.remove(name);
 //            }
 
-        for(String s:directorDb.keySet()) {
-            if (s.equals(name)) {
 
-                List<String> list=movieDirectorPair.get(s);
-                for(String m:list)
-                {
-                    if(movieDb.get(m).getName().equals(m))
-                      movieDb.remove(m);
+//
+//        for(String s:directorDb.keySet()) {
+//            if (s.equals(name)) {
+//
+//                List<String> list=movieDirectorPair.get(s);
+//                for(String m:list)
+//                {
+//                    if(movieDb.get(m).getName().equals(m))
+//                      movieDb.remove(m);
+//                }
+//
+//                directorDb.remove(name);
+//                movieDirectorPair.remove(name);
+//            }
+//        }
+
+
+            if(directorDb.containsKey(name)) {
+
+                if(movieDirectorPair.containsKey(name)) {
+                    List<String> movie=movieDirectorPair.get(name);
+                    for(String m:movie) {
+                        movieDb.remove(m);
+                    }
+                    movieDirectorPair.remove(name);
                 }
-
                 directorDb.remove(name);
-                movieDirectorPair.remove(name);
             }
-        }
+
 
 
         return "success";
@@ -107,19 +123,32 @@ public class MovieRepository {
 //            }
 //
 //        }
-        for(String s:directorDb.keySet()) {
+
+//        for(String s:directorDb.keySet()) {
+//
+//
+//                List<String> list=movieDirectorPair.get(s);
+//                for(String m:list)
+//                {
+//                    movieDb.remove(m);
+//                }
+//
+//
+//            }
+//        movieDirectorPair.clear();
+//        directorDb.clear();
 
 
-                List<String> list=movieDirectorPair.get(s);
-                for(String m:list)
-                {
-                    movieDb.remove(m);
+        for(String d:directorDb.keySet()){
+            if(movieDirectorPair.containsKey(d)){
+                List<String> list=movieDirectorPair.get(d);
+                for(String s:list){
+                    movieDb.remove(s);
                 }
-
-
+                movieDirectorPair.remove(d);
             }
-        movieDirectorPair.clear();
-        directorDb.clear();
+            directorDb.remove(d);
+        }
         return "success";
     }
 
