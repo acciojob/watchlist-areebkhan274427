@@ -75,7 +75,6 @@ public class MovieRepository {
             if (s.equals(name)) {
                 for (String n : movieDirectorPair.get(s)) {
                     movieDb.remove(n);
-
                 }
             }
         }
@@ -88,9 +87,7 @@ public class MovieRepository {
         for(String s:movieDirectorPair.keySet()) {
 
                 for (String n : movieDirectorPair.get(s)) {
-                    if (movieDb.containsKey(n)) {
-                        movieDb.remove(n);
-                    }
+                    movieDb.remove(n);
 
                 }
 
