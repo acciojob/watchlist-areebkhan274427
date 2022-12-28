@@ -51,14 +51,7 @@ public class MovieRepository {
     }
 
     public List<String> getMoviesByDirectorNameFromDb(String name){
-//        List<String> result=new ArrayList<>();
-//        for(String n:movieDirectorPair.keySet()){
-//            if(movieDirectorPair.get(n).equals(name))
-//            {
-//                result.add(n);
-//            }
-//        }
-//        return result;
+
         return movieDirectorPair.getOrDefault(name,null);
     }
 
@@ -71,16 +64,28 @@ public class MovieRepository {
     }
 
     public String deleteDirectorByNameFromDb(String name){
-        for(String s:movieDirectorPair.keySet()) {
-            if (s.equals(name)) {
-//                for (String n : movieDirectorPair.get(s)) {
-//                    movieDb.remove(n);
+//        for(String s:movieDirectorPair.keySet()) {
+//            if (s.equals(name)) {
+//
+//                List<String> list=movieDirectorPair.get(s);
+//                for(String m:list)
+//                {
+//                    movieDb.remove(m);
 //                }
+//
+//                directorDb.remove(name);
+//                movieDirectorPair.remove(name);
+//            }
+
+        for(String s:directorDb.keySet()) {
+            if (s.equals(name)) {
+
                 List<String> list=movieDirectorPair.get(s);
                 for(String m:list)
                 {
                     movieDb.remove(m);
                 }
+
                 directorDb.remove(name);
                 movieDirectorPair.remove(name);
             }
@@ -91,19 +96,27 @@ public class MovieRepository {
     }
 
     public String deleteAllDirectorsFromDb(){
-        for(String s:movieDirectorPair.keySet()) {
-
-//                for (String n : movieDirectorPair.get(s)) {
-//                    movieDb.remove(n);
+//        for(String s:movieDirectorPair.keySet()) {
 //
-//                }
-            List<String> list=movieDirectorPair.get(s);
-            for(String m:list)
-            {
-                movieDb.remove(m);
-            }
+//
+//            List<String> list=movieDirectorPair.get(s);
+//            for(String m:list)
+//            {
+//                movieDb.remove(m);
+//            }
+//
+//        }
+        for(String s:directorDb.keySet()) {
 
-        }
+
+                List<String> list=movieDirectorPair.get(s);
+                for(String m:list)
+                {
+                    movieDb.remove(m);
+                }
+
+
+            }
         movieDirectorPair.clear();
         directorDb.clear();
         return "success";
