@@ -59,7 +59,7 @@ public class MovieRepository {
 //            }
 //        }
 //        return result;
-        return movieDirectorPair.get(name);
+        return movieDirectorPair.getOrDefault(name,null);
     }
 
     public List<String> findAllMoviesFromDb(){
@@ -73,8 +73,13 @@ public class MovieRepository {
     public String deleteDirectorByNameFromDb(String name){
         for(String s:movieDirectorPair.keySet()) {
             if (s.equals(name)) {
-                for (String n : movieDirectorPair.get(s)) {
-                    movieDb.remove(n);
+//                for (String n : movieDirectorPair.get(s)) {
+//                    movieDb.remove(n);
+//                }
+                List<String> list=movieDirectorPair.get(s);
+                for(String m:list)
+                {
+                    movieDb.remove(m);
                 }
                 directorDb.remove(name);
                 movieDirectorPair.remove(name);
@@ -88,10 +93,15 @@ public class MovieRepository {
     public String deleteAllDirectorsFromDb(){
         for(String s:movieDirectorPair.keySet()) {
 
-                for (String n : movieDirectorPair.get(s)) {
-                    movieDb.remove(n);
-
-                }
+//                for (String n : movieDirectorPair.get(s)) {
+//                    movieDb.remove(n);
+//
+//                }
+            List<String> list=movieDirectorPair.get(s);
+            for(String m:list)
+            {
+                movieDb.remove(m);
+            }
 
         }
         movieDirectorPair.clear();
