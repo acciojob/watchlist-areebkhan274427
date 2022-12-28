@@ -43,11 +43,11 @@ public class MovieRepository {
 
     public Movie getMovieFromDb(String name){
         //System.out.println(movieDb.size());
-        return movieDb.get(name);
+        return movieDb.getOrDefault(name,null);
     }
 
     public Director getDirectorFromDb(String name){
-        return directorDb.get(name);
+        return directorDb.getOrDefault(name,null);
     }
 
     public List<String> getMoviesByDirectorNameFromDb(String name){
@@ -76,10 +76,12 @@ public class MovieRepository {
                 for (String n : movieDirectorPair.get(s)) {
                     movieDb.remove(n);
                 }
+                directorDb.remove(name);
+                movieDirectorPair.remove(name);
             }
         }
-        movieDirectorPair.remove(name);
-        directorDb.remove(name);
+
+
         return "success";
     }
 
