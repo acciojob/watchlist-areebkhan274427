@@ -125,7 +125,7 @@ public class MovieRepository {
 
         for(Movie movie:movieDb){
             if(hs.contains(movie.getName())){
-                hs.remove(movie);
+                movieDb.remove(movie);
             }
         }
         directorDb.clear();
