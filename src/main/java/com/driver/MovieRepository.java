@@ -83,7 +83,8 @@ public class MovieRepository {
                 List<String> list=movieDirectorPair.get(s);
                 for(String m:list)
                 {
-                    movieDb.remove(m);
+                    if(movieDb.get(m).getName().equals(m))
+                      movieDb.remove(m);
                 }
 
                 directorDb.remove(name);
