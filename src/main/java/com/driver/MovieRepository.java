@@ -43,11 +43,11 @@ public class MovieRepository {
 
     public Movie getMovieFromDb(String name){
         //System.out.println(movieDb.size());
-        return movieDb.getOrDefault(name,null);
+        return movieDb.get(name);
     }
 
     public Director getDirectorFromDb(String name){
-        return directorDb.getOrDefault(name,null);
+        return directorDb.get(name);
     }
 
     public List<String> getMoviesByDirectorNameFromDb(String name){
@@ -79,37 +79,36 @@ public class MovieRepository {
 
 
 //
-        for(String s:directorDb.keySet()) {
-            if (s.equals(name)) {
-
-                List<String> list=movieDirectorPair.getOrDefault(s,null);
-                for(String m:list)
-                {
-                    if(movieDb.get(m).getName().equals(m))
-                      movieDb.remove(m);
-                }
-
-                directorDb.remove(name);
-                movieDirectorPair.remove(name);
-            }
-        }
-
-
-//            if(directorDb.containsKey(name)) {
+//        for(String s:directorDb.keySet()) {
+//            if (s.equals(name)) {
 //
-//                if(movieDirectorPair.containsKey(name)) {
-//                    List<String> movie=movieDirectorPair.get(name);
-//                    for(String m:movie) {
-//                        movieDb.remove(m);
-//                    }
-//                    movieDirectorPair.remove(name);
+//                List<String> list=movieDirectorPair.getOrDefault(s,null);
+//                for(String m:list)
+//                {
+//                    //if(movieDb.get(m).getName().equals(m))
+//                      movieDb.remove(m);
 //                }
+//
 //                directorDb.remove(name);
+//                movieDirectorPair.remove(name);
 //            }
+//        }
 
 
+            if(directorDb.containsKey(name)) {
 
-        return "success";
+                if(movieDirectorPair.containsKey(name)) {
+                    List<String> movie=movieDirectorPair.get(name);
+                    for(String m:movie) {
+                        movieDb.remove(m);
+                    }
+                    movieDirectorPair.remove(name);
+                }
+                directorDb.remove(name);
+                return "success";
+            }
+            return null;
+
     }
 
     public String deleteAllDirectorsFromDb(){
@@ -124,19 +123,18 @@ public class MovieRepository {
 //
 //        }
 
-        for(String s:directorDb.keySet()) {
-
-
-                List<String> list=movieDirectorPair.getOrDefault(s,null);
-                for(String m:list)
-                {
-                    movieDb.remove(m);
-                }
-
-
-            }
-        movieDirectorPair.clear();
-        directorDb.clear();
+//        for(String s:directorDb.keySet()) {
+//
+//
+//                List<String> list=movieDirectorPair.getOrDefault(s,null);
+//                for(String m:list)
+//                {
+//                    movieDb.remove(m);
+//                }
+//
+//            }
+//        movieDirectorPair.clear();
+//        directorDb.clear();
 
 
 //        for(String d:directorDb.keySet()){
@@ -149,6 +147,16 @@ public class MovieRepository {
 //            }
 //            directorDb.remove(d);
 //        }
+        List<String> list=new ArrayList<>();
+
+        for(String s:movieDirectorPair.keySet()){
+            for(String p:movieDirectorPair.get(s)){
+                list.add(p);
+            }
+        }
+        for(String s:list){
+            movieDb.remove(s);
+        }
         return "success";
     }
 
