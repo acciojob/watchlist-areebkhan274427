@@ -29,16 +29,18 @@ public class MovieRepository {
 
     public String addMovieDirectorPairToDb(String directorName,String movieName){
 
-        if(movieDirectorPair.containsKey(directorName)){
-            movieDirectorPair.get(directorName).add(movieName);
-        }
-        else {
-            List<String> result=new ArrayList<>();
-            result.add(movieName);
-            movieDirectorPair.put(directorName,result);
+        if(movieDb.containsKey(movieName) && directorDb.containsKey(directorName)) {
+            if (movieDirectorPair.containsKey(directorName)) {
+                movieDirectorPair.get(directorName).add(movieName);
+            } else {
+                List<String> result = new ArrayList<>();
+                result.add(movieName);
+                movieDirectorPair.put(directorName, result);
+            }
         }
 
-        return "success";
+            return "success";
+
     }
 
     public Movie getMovieFromDb(String name){
