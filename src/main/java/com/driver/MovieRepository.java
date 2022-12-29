@@ -165,6 +165,8 @@ public class MovieRepository {
         for(String s:list){
             movieDb.remove(s);
         }
+        directorDb.clear();
+        movieDirectorPair.clear();
         return "success";
     }
 
