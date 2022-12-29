@@ -82,7 +82,7 @@ public class MovieRepository {
         for(String s:directorDb.keySet()) {
             if (s.equals(name)) {
 
-                List<String> list=movieDirectorPair.get(s);
+                List<String> list=movieDirectorPair.getOrDefault(s,null);
                 for(String m:list)
                 {
                     if(movieDb.get(m).getName().equals(m))
@@ -127,7 +127,7 @@ public class MovieRepository {
         for(String s:directorDb.keySet()) {
 
 
-                List<String> list=movieDirectorPair.get(s);
+                List<String> list=movieDirectorPair.getOrDefault(s,null);
                 for(String m:list)
                 {
                     movieDb.remove(m);
